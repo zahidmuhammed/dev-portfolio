@@ -1,7 +1,9 @@
 {
-  "name": "ziedorg",
-  "version": "0.1.0",
+  "name": "ziedorg-homepage",
+  "version": "0.1.0", 
+  "description": "Zahid's Website",
   "private": true,
+  "author":"Zahid Muhammed<dev.zahidmuhammed@gmail.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
