@@ -1,0 +1,57 @@
+import Image from "next/image";
+import React from "react";
+import { FaGithub, FaLinkedin, FaRegFaceSmile } from "react-icons/fa6";
+
+const WelcomeCard = () => {
+	//
+	return (
+		<div className="flex border border-[#2C2C2C] bg-[#171717] hover:border-secondary  p-5 rounded-md md:col-span-3 md:row-span-4">
+			<div className="flex flex-col gap-5 md:gap-0 h-full justify-between">
+				<div>
+					<div className="text-xs text-[#737373]">welcome </div>
+					<div className=" text-xl">
+						Hi, I&apos;m{" "}
+						<span className="font-medium">Muhammed Zahid</span>, a
+						software developer with strong focus on the user
+						experience, animations and micro interactions
+					</div>
+				</div>
+				<div className="flex gap-5">
+					<a href="https://github.com/zahidmuhammed" target="_blank">
+						<div className="group cursor-pointer border border-secondary px-5 py-2 rounded-md hover:shadow-none shadow-inner shadow-secondary">
+							<FaGithub className="w-5 h-5 group-hover:text-secondary" />
+						</div>
+					</a>
+
+					<a
+						href="https://www.linkedin.com/in/zahidzayi/"
+						target="_blank"
+					>
+						<div className="group cursor-pointer border border-secondary px-5 py-2 rounded-md hover:shadow-none  shadow-inner shadow-secondary">
+							<FaLinkedin className="w-5 h-5 group-hover:text-secondary" />
+						</div>
+					</a>
+
+					{/* <a href="https://github.com/zahidmuhammed" target="_blank"> */}
+					<div className="group cursor-pointer border border-secondary px-5 py-2 rounded-md hover:shadow-none  shadow-inner shadow-secondary">
+						<FaRegFaceSmile className="w-5 h-5 group-hover:text-secondary" />
+					</div>
+					{/* </a> */}
+				</div>
+			</div>
+			<div className="flex justify-center items-center">
+				<div>
+					<Image
+						alt="memoji"
+						width={500}
+						height={500}
+						draggable={false}
+						src={"/images/memoji.png"}
+					/>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default WelcomeCard;
