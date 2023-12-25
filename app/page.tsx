@@ -11,7 +11,7 @@ const Home = () => {
 	return (
 		<main className="flex flex-col min-h-screen w-full justify-center items-center font-thin">
 			<div>
-				<div className="grid grid-cols-1 md:grid-cols-4 gap-4 mx-12 md:mx-24 px-6 md:px-12">
+				<div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 m-4 md:m-6 lg:m-10 xl:mx-28">
 					<WelcomeCard />
 					{/*  */}
 					<AboutCard />

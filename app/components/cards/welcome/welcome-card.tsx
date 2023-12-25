@@ -1,11 +1,19 @@
 import Image from "next/image";
 import React from "react";
 import { FaGithub, FaLinkedin, FaRegFaceSmile } from "react-icons/fa6";
+import MotionDivWrapper from "../../motion-card/motion-card";
 
 const WelcomeCard = () => {
 	//
 	return (
-		<div className="flex border border-[#2C2C2C] bg-[#171717] hover:border-secondary  p-5 rounded-md md:col-span-3 md:row-span-4">
+		<MotionDivWrapper
+			variants={{
+				hidden: { opacity: 0, x: 0, y: 250 },
+				enter: { opacity: 1, x: 0, y: 0 },
+			}}
+			delay={0}
+			className="flex border border-[#2C2C2C] bg-[#171717] hover:border-secondary p-5 rounded-md md:col-span-3 md:row-span-4 lg:col-span-3 "
+		>
 			<div className="flex flex-col gap-5 md:gap-0 h-full justify-between">
 				<div>
 					<div className="text-xs text-[#737373]">welcome </div>
@@ -39,7 +47,7 @@ const WelcomeCard = () => {
 					{/* </a> */}
 				</div>
 			</div>
-			<div className="flex justify-center items-center">
+			<div className="flex justify-center items-center select-none">
 				<div>
 					<Image
 						alt="memoji"
@@ -50,7 +58,7 @@ const WelcomeCard = () => {
 					/>
 				</div>
 			</div>
-		</div>
+		</MotionDivWrapper>
 	);
 };
 
