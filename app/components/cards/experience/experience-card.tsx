@@ -1,5 +1,15 @@
+"use client";
+
 import React from "react";
 import MotionDivWrapper from "../../motion-card/motion-card";
+
+import { Pagination, Autoplay } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+
+import "swiper/css/effect-cards";
 
 const ExperienceCard = () => {
 	const experiences = [
@@ -41,23 +51,31 @@ const ExperienceCard = () => {
 			className="flex flex-col gap-1 border border-[#2C2C2C] bg-[#171717]  hover:border-secondary p-5 rounded-md  md:row-span-2"
 		>
 			<div className="text-base font-normal">Experience</div>
-			<div className=" snap-y snap-mandatory overflow-scroll cursor-row-resize">
-				<div className="snap-center  text-xs h-full flex flex-col mb-1">
-					<div className="font-thin">{experiences[0].role}</div>
-					<div>{experiences[0].company}</div>
-					<div>
-						{experiences[0].start_date} - {experiences[0].end_date}
-					</div>
-					<div>{experiences[0].address}</div>
-				</div>
-				<div className="snap-center text-xs h-full flex flex-col ">
-					<div className="font-thin">{experiences[1].role}</div>
-					<div>{experiences[1].company}</div>
-					<div>
-						{experiences[1].start_date} - {experiences[1].end_date}
-					</div>
-					<div>{experiences[1].address}</div>
-				</div>
+			<div className="snap-y snap-mandatory overflow-scroll cursor-row-resize h-full">
+				<Swiper
+					grabCursor={true}
+					pagination={true}
+					className="h-full"
+					modules={[Pagination, Autoplay]}
+					autoplay={{
+						delay: 2500,
+						disableOnInteraction: false,
+					}}
+				>
+					{experiences?.map((exp) => (
+						<SwiperSlide>
+							<div className="snap-center text-xs h-full flex flex-col gap-1 pb-6 my-6 ">
+								<div className="font-thin">{exp.role}</div>
+								<div>{exp.company}</div>
+								<div>
+									{exp.start_date} -{" "}
+									{exp.isCurrent ? "Present" : exp.end_date}
+								</div>
+								<div>{exp.address}</div>
+							</div>
+						</SwiperSlide>
+					))}
+				</Swiper>
 			</div>
 		</MotionDivWrapper>
 	);
