@@ -62,8 +62,8 @@ const ExperienceCard = () => {
 						disableOnInteraction: false,
 					}}
 				>
-					{experiences?.map((exp) => (
-						<SwiperSlide>
+					{experiences?.map((exp, index) => (
+						<SwiperSlide key={`${exp.id}_${index}`}>
 							<div className="snap-center text-xs h-full flex flex-col gap-1 pb-6 my-6 ">
 								<div className="font-thin">{exp.role}</div>
 								<div>{exp.company}</div>
