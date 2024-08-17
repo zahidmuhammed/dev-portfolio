@@ -5,9 +5,10 @@ const AboutCard = () => {
 	const primaryTools = [
 		"JavaScript",
 		"React",
-		"React-Native",
 		"NextJs",
-		"Firebase",
+		"Node Js",
+		"Express Js",
+		"MongoDB",
 		"Typescript",
 	];
 	return (

@@ -18,13 +18,13 @@ const Home = () => {
 					{/*  */}
 					<ContactCard />
 					{/*  */}
-					<ProjectsCard />
+					<NowCard />
 					{/*  */}
 					<ExperienceCard />
 					{/*  */}
 					<TimeCard />
 					{/*  */}
-					<NowCard />
+					<ProjectsCard />
 					{/*  */}
 					<InfoCard />
 					{/*  */}

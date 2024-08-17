@@ -1,17 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import MotionDivWrapper from "../../motion-card/motion-card";
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
+import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
+import { NextButton, PrevButton, usePrevNextButtons } from "../../carousel-embla/EmblaCarouselArrowButtons";
+import { DotButton, useDotButton } from "../../carousel-embla/EmblaCarouselDotButton";
 
-import { Pagination, Autoplay } from "swiper/modules";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-
-import "swiper/css/effect-cards";
 
 const ExperienceCard = () => {
+
+	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
+
 	const experiences = [
 		{
 			id: "EXP001",
@@ -35,11 +36,35 @@ const ExperienceCard = () => {
 			employment: "full-time",
 			logo: "",
 			start_date: "Mar 2023",
-			end_date: "",
+			end_date: "July 2024",
 			address: "Govt. Cyber Park, Calicut, Kerala",
-			isCurrent: true,
+			isCurrent: false,
 		},
 	];
+
+	const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
+		const autoplay = emblaApi?.plugins()?.autoplay
+		if (!autoplay) return
+
+		const resetOrStop =
+			autoplay.options.stopOnInteraction === false
+				? autoplay.reset
+				: autoplay.stop
+
+		resetOrStop()
+	}, [])
+
+	const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(
+		emblaApi,
+		onNavButtonClick
+	)
+
+	const {
+		prevBtnDisabled,
+		nextBtnDisabled,
+		onPrevButtonClick,
+		onNextButtonClick
+	} = usePrevNextButtons(emblaApi, onNavButtonClick)
 
 	return (
 		<MotionDivWrapper
@@ -51,31 +76,35 @@ const ExperienceCard = () => {
 			className="flex flex-col gap-1 border border-[#2C2C2C] bg-[#171717]  hover:border-secondary p-5 rounded-md  md:row-span-2"
 		>
 			<div className="text-base font-normal">Experience</div>
-			<div className="snap-y snap-mandatory overflow-scroll cursor-row-resize h-full">
-				<Swiper
-					grabCursor={true}
-					pagination={true}
-					className="h-full"
-					modules={[Pagination, Autoplay]}
-					autoplay={{
-						delay: 2500,
-						disableOnInteraction: false,
-					}}
-				>
+			<div className="embla overflow-hidden" ref={emblaRef}>
+				<div className="embla__container flex">
 					{experiences?.map((exp, index) => (
-						<SwiperSlide key={`${exp.id}_${index}`}>
-							<div className="snap-center text-xs h-full flex flex-col gap-1 pb-6 my-6 ">
-								<div className="font-thin">{exp.role}</div>
-								<div>{exp.company}</div>
-								<div>
-									{exp.start_date} -{" "}
-									{exp.isCurrent ? "Present" : exp.end_date}
-								</div>
-								<div>{exp.address}</div>
+						<div key={exp.id} className="embla__slide text-xs flex-[0_0_100%] min-w-0 gap-1 pb-6 my-6 ">
+							<div className="font-thin">{exp.role}</div>
+							<div>{exp.company}</div>
+							<div>
+								{exp.start_date} -{" "}
+								{exp.isCurrent ? "Present" : exp.end_date}
 							</div>
-						</SwiperSlide>
+							<div>{exp.address}</div>
+						</div>
 					))}
-				</Swiper>
+				</div>
+				<div className="flex justify-between items-center">
+					<div className="flex gap-2">
+						{scrollSnaps.map((_, index) => (
+							<DotButton
+								key={index}
+								onClick={() => onDotButtonClick(index)}
+								className={`rounded-full h-2 w-2 ${index === selectedIndex ? "border " : " bg-gray-600"} `}
+							/>
+						))}
+					</div>
+					{/* <div className="flex">
+						<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+						<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+					</div> */}
+				</div>
 			</div>
 		</MotionDivWrapper>
 	);
