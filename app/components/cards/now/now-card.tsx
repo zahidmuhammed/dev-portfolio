@@ -21,7 +21,7 @@ const NowCard = () => {
 					</div>
 				</div>
 				<div className=" text-xs text-white/50">
-					<Link href={"https://sive.rs/nowff"} target="_">what's that ?</Link>
+					<Link href={"https://sive.rs/nowff"} target="_">what&apos;s that ?</Link>
 				</div>
 				<div className=" text-xs text-white/90">
 					Currently working as freelancer
