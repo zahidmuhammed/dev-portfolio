@@ -4,8 +4,7 @@ import React, { useCallback } from "react";
 import MotionDivWrapper from "../../motion-card/motion-card";
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import { EmblaOptionsType, EmblaCarouselType } from 'embla-carousel'
-import { NextButton, PrevButton, usePrevNextButtons } from "../../carousel-embla/EmblaCarouselArrowButtons";
+import { EmblaCarouselType } from 'embla-carousel'
 import { DotButton, useDotButton } from "../../carousel-embla/EmblaCarouselDotButton";
 
 
@@ -59,13 +58,6 @@ const ExperienceCard = () => {
 		onNavButtonClick
 	)
 
-	const {
-		prevBtnDisabled,
-		nextBtnDisabled,
-		onPrevButtonClick,
-		onNextButtonClick
-	} = usePrevNextButtons(emblaApi, onNavButtonClick)
-
 	return (
 		<MotionDivWrapper
 			variants={{
@@ -100,10 +92,6 @@ const ExperienceCard = () => {
 							/>
 						))}
 					</div>
-					{/* <div className="flex">
-						<PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-						<NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-					</div> */}
 				</div>
 			</div>
 		</MotionDivWrapper>
